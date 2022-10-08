@@ -1,8 +1,10 @@
 package ru.geekbrains.auto.qa.autoqa.user.unit;
 
+
+
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.Test;
-import ru.geekbrains.auto.qa.autoqa.lesson2.controller.rest.example.dto.User;
+import ru.geekbrains.auto.qa.autoqa.lesson4.controller.User;
 import ru.geekbrains.auto.qa.autoqa.lesson4.entity.UserEntity;
 import ru.geekbrains.auto.qa.autoqa.lesson4.mapper.UserMapper;
 import ru.geekbrains.auto.qa.autoqa.lesson4.mapper.UserMapperImpl;
@@ -21,7 +23,7 @@ public class UserMapperUnitTest {
         userEntity.setId(10);
 
         //step
-        User user = userMapper.entityToDto(userEntity);
+       User user = userMapper.entityToDto(userEntity);
 
         //assert
         SoftAssertions.assertSoftly(s -> {

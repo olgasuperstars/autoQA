@@ -1,7 +1,7 @@
 package ru.geekbrains.auto.qa.autoqa.lesson4.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.apache.catalina.User;
+
 import org.springframework.web.bind.annotation.*;
 import ru.geekbrains.auto.qa.autoqa.lesson4.service.UserService;
 

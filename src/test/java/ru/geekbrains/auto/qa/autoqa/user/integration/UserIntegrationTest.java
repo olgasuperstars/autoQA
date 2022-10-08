@@ -1,7 +1,6 @@
 package ru.geekbrains.auto.qa.autoqa.user.integration;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.apache.catalina.User;
 import org.assertj.core.api.Assertions;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.Disabled;
@@ -12,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.HttpHeaders;
 import org.springframework.test.annotation.DirtiesContext;
+import ru.geekbrains.auto.qa.autoqa.lesson4.controller.User;
 import ru.geekbrains.auto.qa.autoqa.lesson4.entity.UserEntity;
 import ru.geekbrains.auto.qa.autoqa.lesson4.repository.UserRepository;
 

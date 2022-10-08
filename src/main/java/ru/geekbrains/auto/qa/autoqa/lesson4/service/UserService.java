@@ -1,7 +1,7 @@
 package ru.geekbrains.auto.qa.autoqa.lesson4.service;
 
 
-import org.apache.catalina.User;
+import ru.geekbrains.auto.qa.autoqa.lesson4.controller.User;
 
 public interface UserService {
 

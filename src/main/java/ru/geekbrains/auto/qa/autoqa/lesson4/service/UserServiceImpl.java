@@ -1,9 +1,9 @@
 package ru.geekbrains.auto.qa.autoqa.lesson4.service;
 
 import lombok.RequiredArgsConstructor;
-import org.apache.catalina.User;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.geekbrains.auto.qa.autoqa.lesson4.controller.User;
 import ru.geekbrains.auto.qa.autoqa.lesson4.entity.UserEntity;
 import ru.geekbrains.auto.qa.autoqa.lesson4.mapper.UserMapper;
 import ru.geekbrains.auto.qa.autoqa.lesson4.repository.UserRepository;

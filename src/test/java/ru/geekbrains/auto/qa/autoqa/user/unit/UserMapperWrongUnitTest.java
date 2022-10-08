@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
-import ru.geekbrains.auto.qa.autoqa.lesson2.controller.rest.example.dto.User;
+import ru.geekbrains.auto.qa.autoqa.lesson4.controller.User;
 import ru.geekbrains.auto.qa.autoqa.lesson4.entity.UserEntity;
 import ru.geekbrains.auto.qa.autoqa.lesson4.mapper.UserMapper;
 

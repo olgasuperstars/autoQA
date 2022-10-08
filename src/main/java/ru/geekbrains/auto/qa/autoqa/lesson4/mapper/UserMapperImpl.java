@@ -1,7 +1,8 @@
 package ru.geekbrains.auto.qa.autoqa.lesson4.mapper;
 
-import org.apache.catalina.User;
+
 import org.springframework.stereotype.Component;
+import ru.geekbrains.auto.qa.autoqa.lesson4.controller.User;
 import ru.geekbrains.auto.qa.autoqa.lesson4.entity.UserEntity;
 
 @Component
