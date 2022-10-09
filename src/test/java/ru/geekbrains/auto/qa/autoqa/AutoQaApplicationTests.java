@@ -1,4 +1,4 @@
-package ru.geekbrains.auto.qa.autoQA;
+package ru.geekbrains.auto.qa.autoqa;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
