@@ -3,7 +3,6 @@ package ru.geekbrains.auto.qa.autoqa.user.integration;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.assertj.core.api.Assertions;
 import org.assertj.core.api.SoftAssertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +14,7 @@ import ru.geekbrains.auto.qa.autoqa.lesson4.controller.User;
 import ru.geekbrains.auto.qa.autoqa.lesson4.entity.UserEntity;
 import ru.geekbrains.auto.qa.autoqa.lesson4.repository.UserRepository;
 
+import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -108,13 +108,22 @@ public class UserIntegrationTest {
 
     @Test
 
-    void updateUserTest() throws Exception {
+    void updateUserTest() throws IOException, InterruptedException {
         //pre-condition
+        UserEntity userEntity = new UserEntity();
+        userEntity.setAge(45);
+        userEntity.setFirstName("John");
+        userEntity.setFirstName("Wick");
+        userRepository.saveAndFlush(userEntity);
+
+        //step 1 send put request
         User user = new User();
-        user.setAge(55);
+        user.setId(userEntity.getId());
+        user.setAge(50);
         user.setFirstName("First Name");
         user.setSecondName("Second Name");
-                
+
+
 
         HttpRequest httpRequest = HttpRequest.newBuilder()
                 .uri(URI.create(getRootUrl() + "/user-rest"))
@@ -122,28 +131,49 @@ public class UserIntegrationTest {
                 .PUT(HttpRequest.BodyPublishers.ofString(objectMapper.writeValueAsString(user)))
                 .build();
 
-        //step 1
+
         HttpResponse<String> response = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
 
         //intermediate assert after first step
         Assertions.assertThat(response.statusCode()).isEqualTo(SC_OK);
 
         //step 2
-        UserEntity userEntity = userRepository.findAll().stream()
-                .findFirst()
+        UserEntity updatedUserEntity = userRepository.findById(userEntity.getId())
                 .orElseThrow();
 
-        //assert
+        //assert updated fields
         SoftAssertions.assertSoftly(s -> {
-            s.assertThat(userEntity.getFirstName()).isEqualTo(user.getFirstName());
-            s.assertThat(userEntity.getSecondName()).isEqualTo(user.getSecondName());
-            s.assertThat(userEntity.getAge()).isEqualTo(user.getAge());
+            s.assertThat(updatedUserEntity.getFirstName()).isEqualTo(user.getFirstName());
+            s.assertThat(updatedUserEntity.getSecondName()).isEqualTo(user.getSecondName());
+            s.assertThat(updatedUserEntity.getAge()).isEqualTo(user.getAge());
         });
+
     }
 
     @Test
-    @Disabled
-    void deleteUserTest() {
-        //TODO Implement delete user test
+
+    void deleteUserTest() throws IOException, InterruptedException {
+        //pre-condition
+        UserEntity userEntity = new UserEntity();
+        userEntity.setAge(45);
+        userEntity.setFirstName("John");
+        userEntity.setFirstName("Wick");
+        userRepository.saveAndFlush(userEntity);
+
+        //step 1 send delete request
+        HttpRequest httpRequest = HttpRequest.newBuilder()
+                .uri(URI.create(getRootUrl() + "/user-rest/" + userEntity.getId()))
+                .header(HttpHeaders.CONTENT_TYPE, "application/json")
+                .DELETE()
+                .build();
+
+        HttpResponse<String> response = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
+
+        //intermediate assert after first step
+        Assertions.assertThat(response.statusCode()).isEqualTo(SC_OK);
+
+        //assert that repository is empty
+        Assertions.assertThat(userRepository.findAll()).isEmpty();
+
     }
 }
