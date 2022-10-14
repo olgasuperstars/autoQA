@@ -107,9 +107,38 @@ public class UserIntegrationTest {
     }
 
     @Test
-    @Disabled
-    void updateUserTest() {
-        //TODO Implement update user test
+
+    void updateUserTest() throws Exception {
+        //pre-condition
+        User user = new User();
+        user.setAge(55);
+        user.setFirstName("First Name");
+        user.setSecondName("Second Name");
+                
+
+        HttpRequest httpRequest = HttpRequest.newBuilder()
+                .uri(URI.create(getRootUrl() + "/user-rest"))
+                .header(HttpHeaders.CONTENT_TYPE, "application/json")
+                .PUT(HttpRequest.BodyPublishers.ofString(objectMapper.writeValueAsString(user)))
+                .build();
+
+        //step 1
+        HttpResponse<String> response = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
+
+        //intermediate assert after first step
+        Assertions.assertThat(response.statusCode()).isEqualTo(SC_OK);
+
+        //step 2
+        UserEntity userEntity = userRepository.findAll().stream()
+                .findFirst()
+                .orElseThrow();
+
+        //assert
+        SoftAssertions.assertSoftly(s -> {
+            s.assertThat(userEntity.getFirstName()).isEqualTo(user.getFirstName());
+            s.assertThat(userEntity.getSecondName()).isEqualTo(user.getSecondName());
+            s.assertThat(userEntity.getAge()).isEqualTo(user.getAge());
+        });
     }
 
     @Test
