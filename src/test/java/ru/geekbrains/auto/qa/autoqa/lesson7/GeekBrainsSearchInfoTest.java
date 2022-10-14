@@ -9,7 +9,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import ru.geekbrains.auto.qa.autoqa.lesson7.config.GeekBrainsTestConfig;
-
+import ru.geekbrains.auto.qa.autoqa.lesson7.page.GeekBrainsMainPage;
+import ru.geekbrains.auto.qa.autoqa.lesson7.page.JavaProfessionPage;
+import ru.geekbrains.auto.qa.autoqa.lesson7.page.JavaQaAutomationProfessionPage;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = GeekBrainsTestConfig.class)
