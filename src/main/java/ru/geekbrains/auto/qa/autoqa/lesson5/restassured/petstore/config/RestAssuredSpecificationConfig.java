@@ -1,7 +1,8 @@
 package ru.geekbrains.auto.qa.autoqa.lesson5.restassured.petstore.config;
 
-
-import jdk.jfr.ContentType;
+import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
+import io.restassured.specification.RequestSpecification;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

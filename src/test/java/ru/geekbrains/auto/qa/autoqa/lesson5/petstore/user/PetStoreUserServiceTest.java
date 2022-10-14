@@ -1,6 +1,7 @@
 package ru.geekbrains.auto.qa.autoqa.lesson5.petstore.user;
 
-import restassured.specification.RequestSpecification;
+import io.restassured.http.ContentType;
+import io.restassured.specification.RequestSpecification;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -9,7 +10,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-i
 import ru.geekbrains.auto.qa.autoqa.lesson5.petstore.config.PetStoreTestConfig;
 import ru.geekbrains.auto.qa.autoqa.lesson5.restassured.petstore.EndPoints;
 import ru.geekbrains.auto.qa.autoqa.lesson5.restassured.petstore.dto.PetStoreUserDto;
