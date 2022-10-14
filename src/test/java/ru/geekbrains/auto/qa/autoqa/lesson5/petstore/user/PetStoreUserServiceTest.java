@@ -103,7 +103,7 @@ public class PetStoreUserServiceTest {
     }
 
     @Test
-  
+
     void updateUserTest() {
         PetStoreUserDto userDto = PetStoreUserDto.builder()
                 .firstName("firstName")
